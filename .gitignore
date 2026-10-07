@@ -1,0 +1,12 @@
+# Generated raw data
+data/raw/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# macOS system files
+.DS_Store
+
+# Environment and secret files
+.env
