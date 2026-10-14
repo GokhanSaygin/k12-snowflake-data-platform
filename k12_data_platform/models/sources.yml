@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: K12_DATA_PLATFORM
+    schema: BRONZE
+    tables:
+      - name: students
+      - name: campuses
+      - name: attendance
+      

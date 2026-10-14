@@ -1,0 +1,39 @@
+SELECT
+    A.STUDENT_ID,
+    S.CAMPUS_ID,
+    C.CAMPUS_NAME,
+    S.GRADE_LEVEL,
+
+    COUNT(*) AS SCHOOL_DAYS,
+
+    COUNT_IF(
+        A.ATTENDANCE_STATUS = 'ABSENT'
+    ) AS ABSENT_DAYS,
+
+    ROUND(
+        COUNT_IF(A.ATTENDANCE_STATUS = 'ABSENT')
+        / COUNT(*) * 100,
+        2
+    ) AS ABSENCE_RATE,
+
+    CASE
+        WHEN COUNT_IF(A.ATTENDANCE_STATUS = 'ABSENT') >= 3
+        THEN 'CHRONICALLY_ABSENT'
+        ELSE 'NOT_CHRONICALLY_ABSENT'
+    END AS CHRONIC_ABSENCE_STATUS,
+
+    CURRENT_TIMESTAMP() AS CREATED_AT
+
+FROM {{ ref('silver_attendance') }} A
+
+INNER JOIN {{ ref('silver_students') }} S
+    ON A.STUDENT_ID = S.STUDENT_ID
+
+INNER JOIN {{ ref('silver_campuses') }} C
+    ON S.CAMPUS_ID = C.CAMPUS_ID
+
+GROUP BY
+    A.STUDENT_ID,
+    S.CAMPUS_ID,
+    C.CAMPUS_NAME,
+    S.GRADE_LEVEL

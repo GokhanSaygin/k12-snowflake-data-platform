@@ -10,3 +10,16 @@ __pycache__/
 
 # Environment and secret files
 .env
+# Python virtual environment
+.venv/
+
+# dbt generated files
+k12_data_platform/target/
+k12_data_platform/logs/
+k12_data_platform/dbt_packages/
+
+# Root-level dbt logs
+logs/
+
+# macOS screenshots
+Screenshot*.png

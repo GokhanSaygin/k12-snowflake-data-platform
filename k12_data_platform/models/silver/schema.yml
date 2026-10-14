@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: silver_students
+    columns:
+      - name: student_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: campus_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('silver_campuses')
+                field: campus_id
+
+  - name: silver_attendance
+    columns:
+      - name: student_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('silver_students')
+                field: student_id
+
+      - name: attendance_date
+        data_tests:
+          - not_null
+
+      - name: attendance_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['PRESENT', 'ABSENT', 'TARDY']
