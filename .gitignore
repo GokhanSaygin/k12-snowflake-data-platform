@@ -23,3 +23,14 @@ logs/
 
 # macOS screenshots
 Screenshot*.png
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfplan
+terraform/.terraform.tfstate.lock.info
+
+# Terraform variable files may contain sensitive values
+terraform/*.tfvars
+terraform/*.tfvars.json
