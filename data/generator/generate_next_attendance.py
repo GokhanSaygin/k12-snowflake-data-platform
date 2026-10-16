@@ -6,7 +6,7 @@ random.seed(43)
 
 RAW_DIR = Path(__file__).resolve().parent.parent / "raw"
 STUDENTS_FILE = RAW_DIR / "students.csv"
-OUTPUT_FILE = RAW_DIR / "attendance" / "attendance_2026-09-23.csv"
+OUTPUT_FILE = RAW_DIR / "attendance" / "attendance_2026-09-24.csv"
 
 with STUDENTS_FILE.open("r", newline="") as file:
     reader = csv.DictReader(file)
@@ -28,9 +28,10 @@ with OUTPUT_FILE.open("w", newline="") as file:
             k=1
         )[0]
 
+
         writer.writerow([
             student_id,
-            "2026-09-23",
+            "2026-09-24",
             status
         ])
 
